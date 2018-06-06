@@ -1,0 +1,170 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "KmjnydoAbofMieIWm+it5OWERaM=",
+			"path": "github.com/alecthomas/template",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
+			"checksumSHA1": "3wt0pTXXeS+S93unwhGoLIyGX/Q=",
+			"path": "github.com/alecthomas/template/parse",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
+			"checksumSHA1": "fCc3grA7vIxfBru7R3SqjcW+oLI=",
+			"path": "github.com/alecthomas/units",
+			"revision": "2efee857e7cfd4f3d0138cc3cbb1b4966962b93a",
+			"revisionTime": "2015-10-22T06:55:26Z"
+		},
+		{
+			"checksumSHA1": "0rido7hYHQtfq3UJzVT5LClLAWc=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/beorn7/perks/quantile",
+			"path": "github.com/beorn7/perks/quantile",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "8e94vVGc8ssfxcpgDSGLmp1hRJM=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/golang/protobuf/proto",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "bKMZjd2wPw13VwoE7mBeSv5djFA=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/matttproud/golang_protobuf_extensions/pbutil",
+			"path": "github.com/matttproud/golang_protobuf_extensions/pbutil",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "RN3a921vMkKpvEk4LwstsHcTI7w=",
+			"path": "github.com/prometheus/client_golang/prometheus",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "MYqKV5uVTfCxP9zBug7naBQ1vr8=",
+			"path": "github.com/prometheus/client_golang/prometheus/promhttp",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "DvwvOlPNAgRntBzt3b3OSRMS2N4=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/prometheus/client_model/go",
+			"path": "github.com/prometheus/client_model/go",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "vPdC/DzEm7YbzRir2wwnpLPfay8=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/prometheus/common/expfmt",
+			"path": "github.com/prometheus/common/expfmt",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "GWlM3d2vPYyNATtTFgftS10/A9w=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg",
+			"path": "github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "MGnqHnmEqc1fjnYiWReSiW8C27A=",
+			"path": "github.com/prometheus/common/log",
+			"revision": "7600349dcfe1abd18d72d3a1770870d9800a7801",
+			"revisionTime": "2018-05-18T15:47:59Z"
+		},
+		{
+			"checksumSHA1": "EXTRY7DL9gFW8c341Dk6LDXCBn8=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/prometheus/common/model",
+			"path": "github.com/prometheus/common/model",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "91KYK0SpvkaMJJA2+BcxbVnyRO0=",
+			"path": "github.com/prometheus/common/version",
+			"revision": "7600349dcfe1abd18d72d3a1770870d9800a7801",
+			"revisionTime": "2018-05-18T15:47:59Z"
+		},
+		{
+			"checksumSHA1": "qG0ClCTt2wuQnYLsFvtlQB8J5FQ=",
+			"origin": "github.com/prometheus/client_golang/vendor/github.com/prometheus/procfs",
+			"path": "github.com/prometheus/procfs",
+			"revision": "7540c0707421d7c58cfce34f4294d1b1f25f240d",
+			"revisionTime": "2018-06-04T13:00:09Z"
+		},
+		{
+			"checksumSHA1": "lv9rIcjbVEGo8AT1UCUZXhXrfQc=",
+			"path": "github.com/prometheus/procfs/internal/util",
+			"revision": "94663424ae5ae9856b40a9f170762b4197024661",
+			"revisionTime": "2018-06-01T12:45:29Z"
+		},
+		{
+			"checksumSHA1": "HSP5hVT0CNMRa8+Xtz4z2Ic5U0E=",
+			"path": "github.com/prometheus/procfs/nfs",
+			"revision": "94663424ae5ae9856b40a9f170762b4197024661",
+			"revisionTime": "2018-06-01T12:45:29Z"
+		},
+		{
+			"checksumSHA1": "yItvTQLUVqm/ArLEbvEhqG0T5a0=",
+			"path": "github.com/prometheus/procfs/xfs",
+			"revision": "94663424ae5ae9856b40a9f170762b4197024661",
+			"revisionTime": "2018-06-01T12:45:29Z"
+		},
+		{
+			"checksumSHA1": "4xVLuzwQhLtRSkuEMUHSdTxpYyM=",
+			"path": "github.com/seekplum/plum_exporter/collector",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "5fRTP+zI9WQqNzyHbi2qarMGauQ=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "ea8897e79973357ba785ac2533559a6297e83c44",
+			"revisionTime": "2018-05-23T07:42:43Z"
+		},
+		{
+			"checksumSHA1": "BGm8lKZmvJbf/YOJLeL1rw2WVjA=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "b47b1587369238182299fe4dad77d05b8b461e06",
+			"revisionTime": "2018-06-06T01:44:09Z"
+		},
+		{
+			"checksumSHA1": "1JsTlZnfy3UD/H6z4gw0v7qh058=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "c11f84a56e43e20a78cee75a7c034031ecf57d1f",
+			"revisionTime": "2018-05-25T13:55:20Z"
+		},
+		{
+			"checksumSHA1": "m5QCvoZ2KaoLTG9VWjYNonM08b8=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "c11f84a56e43e20a78cee75a7c034031ecf57d1f",
+			"revisionTime": "2018-05-25T13:55:20Z"
+		},
+		{
+			"checksumSHA1": "uCpbmktijfpv9WhfAH3VTHu9GKA=",
+			"path": "golang.org/x/sys/windows/registry",
+			"revision": "c11f84a56e43e20a78cee75a7c034031ecf57d1f",
+			"revisionTime": "2018-05-25T13:55:20Z"
+		},
+		{
+			"checksumSHA1": "uVlUSSKplihZG7N+QJ6fzDZ4Kh8=",
+			"path": "golang.org/x/sys/windows/svc/eventlog",
+			"revision": "c11f84a56e43e20a78cee75a7c034031ecf57d1f",
+			"revisionTime": "2018-05-25T13:55:20Z"
+		},
+		{
+			"checksumSHA1": "sToCp8GThnMnsBzsHv+L/tBYQrQ=",
+			"path": "gopkg.in/alecthomas/kingpin.v2",
+			"revision": "947dcec5ba9c011838740e680966fd7087a71d0d",
+			"revisionTime": "2017-12-17T18:08:21Z"
+		}
+	],
+	"rootPath": "plum_exporter"
+}
