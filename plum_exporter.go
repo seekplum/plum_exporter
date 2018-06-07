@@ -98,8 +98,8 @@ func execute(name string, c collector.Collector, ch chan<- prometheus.Metric) {
 }
 
 func loadCollectors() (map[string]collector.Collector, error) {
-	collectors := map[string]collector.Collector{}
 	log.Infof("collector Factories : %v", collector.Factories)
+	collectors := map[string]collector.Collector{}
 	for name, fn := range collector.Factories {
 		log.Infof("load collect %s", name)
 		c, err := fn()

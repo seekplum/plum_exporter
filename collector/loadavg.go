@@ -13,8 +13,6 @@
 
 package collector
 
-// #include <stdlib.h>
-import "C"
 import (
 	"fmt"
 	"errors"
@@ -38,61 +36,42 @@ func init() {
 
 // Take a prometheus registry and return a new Collector exposing load average.
 func NewLoadavgCollector() (Collector, error) {
-	return &loadavgCollector{
-		metric: []prometheus.Gauge{
-			prometheus.NewGauge(prometheus.GaugeOpts{
-				Namespace: Namespace,
-				Name:      "load1",
-				Help:      "1m load average.",
-			}),
-			prometheus.NewGauge(prometheus.GaugeOpts{
-				Namespace: Namespace,
-				Name:      "load5",
-				Help:      "5m load average.",
-			}),
-			prometheus.NewGauge(prometheus.GaugeOpts{
-				Namespace: Namespace,
-				Name:      "load15",
-				Help:      "15m load average.",
-			}),
-		},
-	}, nil
+	return &loadavgCollector{}, nil
 }
 
-func getLoad() ([]float64, error) {
-	// 直接用 C 模块在不同平台会有问题
+func getLoad() (map[string]float64, error) {
+	var loadInfo = map[string]float64{}
 	output, err := utils.Cmd(config.UPTIME)
 	if err == nil {
-		pattern := regexp.MustCompile(`load average:\s+(\d+\.?\d+),?\s+(\d+\.?\d+),?\s+(\d+\.?\d+)`)
+		pattern := regexp.MustCompile(`load averages?:\s+(\d+\.?\d+),?\s+(\d+\.?\d+),?\s+(\d+\.?\d+)`)
 		match := pattern.FindStringSubmatch(output)
 		load1, _ := strconv.ParseFloat(match[1], 64)
 		load5, _ := strconv.ParseFloat(match[2], 64)
 		load15, _ := strconv.ParseFloat(match[3], 64)
-		return []float64{load1, load5, load15}, nil
-	} else {
-		return nil, errors.New("failed to get load average")
-	}
-}
-
-func getLoadC() ([]float64, error) {
-	var loadavg [3]C.double
-	samples := C.getloadavg(&loadavg[0], 3)
-	if samples > 0 {
-		return []float64{float64(loadavg[0]), float64(loadavg[1]), float64(loadavg[2])}, nil
+		loadInfo["load1"] = load1
+		loadInfo["load5"] = load5
+		loadInfo["load15"] = load15
+		return loadInfo, nil
 	} else {
 		return nil, errors.New("failed to get load average")
 	}
 }
 
 func (c *loadavgCollector) Update(ch chan<- prometheus.Metric) (err error) {
-	loads, err := getLoadC()
+	loads, err := getLoad()
 	if err != nil {
 		return fmt.Errorf("couldn't get load: %s", err)
 	}
-	for i, load := range loads {
-		log.Debugf("Set load %d: %f", i, load)
-		c.metric[i].Set(load)
-		c.metric[i].Collect(ch)
+	log.Debugf("Set uptime load: %v", loads)
+	for k, v := range loads {
+		ch <- prometheus.MustNewConstMetric(
+			prometheus.NewDesc(
+				prometheus.BuildFQName(Namespace, "", k),
+				fmt.Sprintf("%s load averages.", k),
+				nil, nil,
+			),
+			prometheus.GaugeValue, v,
+		)
 	}
 	return err
 }
