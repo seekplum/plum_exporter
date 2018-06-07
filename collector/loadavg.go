@@ -13,16 +13,19 @@
 
 package collector
 
+// #include <stdlib.h>
+import "C"
 import (
 	"fmt"
+	"errors"
+	"regexp"
+	"strconv"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
-	"errors"
+	"github.com/seekplum/plum_exporter/utils"
+	"github.com/seekplum/plum_exporter/config"
 )
-
-// #include <stdlib.h>
-import "C"
 
 type loadavgCollector struct {
 	metric []prometheus.Gauge
@@ -56,8 +59,33 @@ func NewLoadavgCollector() (Collector, error) {
 	}, nil
 }
 
+func getLoad() ([]float64, error) {
+	// 直接用 C 模块在不同平台会有问题
+	output, err := utils.Cmd(config.UPTIME)
+	if err == nil {
+		pattern := regexp.MustCompile(`load average:\s+(\d+\.?\d+),?\s+(\d+\.?\d+),?\s+(\d+\.?\d+)`)
+		match := pattern.FindStringSubmatch(output)
+		load1, _ := strconv.ParseFloat(match[1], 64)
+		load5, _ := strconv.ParseFloat(match[2], 64)
+		load15, _ := strconv.ParseFloat(match[3], 64)
+		return []float64{load1, load5, load15}, nil
+	} else {
+		return nil, errors.New("failed to get load average")
+	}
+}
+
+func getLoadC() ([]float64, error) {
+	var loadavg [3]C.double
+	samples := C.getloadavg(&loadavg[0], 3)
+	if samples > 0 {
+		return []float64{float64(loadavg[0]), float64(loadavg[1]), float64(loadavg[2])}, nil
+	} else {
+		return nil, errors.New("failed to get load average")
+	}
+}
+
 func (c *loadavgCollector) Update(ch chan<- prometheus.Metric) (err error) {
-	loads, err := getLoad()
+	loads, err := getLoadC()
 	if err != nil {
 		return fmt.Errorf("couldn't get load: %s", err)
 	}
@@ -67,14 +95,4 @@ func (c *loadavgCollector) Update(ch chan<- prometheus.Metric) (err error) {
 		c.metric[i].Collect(ch)
 	}
 	return err
-}
-
-func getLoad() ([]float64, error) {
-	var loadavg [3]C.double
-	samples := C.getloadavg(&loadavg[0], 3)
-	if samples > 0 {
-		return []float64{float64(loadavg[0]), float64(loadavg[1]), float64(loadavg[2])}, nil
-	} else {
-		return nil, errors.New("failed to get load average")
-	}
 }
