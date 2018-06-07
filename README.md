@@ -19,5 +19,5 @@ cd plum_exporter
 
 2.执行build操作
 ```shell
-docker run --rm -ti -v $(pwd):/app quay.io/prometheus/golang-builder -i "plum_exporter" -p "linux/amd64"
+docker run --rm -ti -v $(pwd):/app quay.io/prometheus/golang-builder -i "github.com/seekplum/plum_exporter" -p "linux/amd64"
 ```

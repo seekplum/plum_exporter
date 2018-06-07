@@ -11,8 +11,8 @@ import (
 	"os"
 	"sync"
 	"time"
-	//"github.com/seekplum/plum_exporter/collector" // 绝对路径导入
-	"plum_exporter/collector" // 相对路径导入
+	"github.com/seekplum/plum_exporter/collector" // 绝对路径导入
+	//"plum_exporter/collector" // 相对路径导入
 )
 
 var (
