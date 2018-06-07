@@ -4,9 +4,6 @@ repository:
     path: github.com/seekplum/plum_exporter
 build:
     flags: -a -tags 'netgo static_build'
-    binaries:
-        - name: plum_exporter
-          path: ./cmd
     ldflags: |
         -X {{repoPath}}/vendor/github.com/prometheus/common/version.Version={{.Version}}
         -X {{repoPath}}/vendor/github.com/prometheus/common/version.Revision={{.Revision}}
