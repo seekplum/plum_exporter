@@ -4,3 +4,4 @@
 build_test
 test.go
 plum_exporter
+.build

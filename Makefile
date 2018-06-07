@@ -6,6 +6,9 @@ PREFIX                  ?= $(shell pwd)
 BIN_DIR                 ?= $(shell pwd)
 DOCKER_IMAGE_NAME       ?= plum-exporter
 DOCKER_IMAGE_TAG        ?= $(subst /,-,$(shell git rev-parse --abbrev-ref HEAD))
+PLUM := plum_exporter
+RELEASE_VERSION := master
+SRC_VERSION := $(RELEASE_VERSION)
 
 
 all: format build test
@@ -42,6 +45,10 @@ promu:
 	@GOOS=$(shell uname -s | tr A-Z a-z) \
 		GOARCH=$(subst x86_64,amd64,$(patsubst i%86,386,$(shell uname -m))) \
 		$(GO) get -u github.com/prometheus/promu
+
+plum:
+	@echo ">> building plum_exporter"
+	@bash ./build.sh $(PLUM) $(SRC_VERSION) $(RELEASE_VERSION)
 
 
 .PHONY: all style format build test vet tarball docker promu

@@ -1,18 +1,29 @@
 #/bin/bash
+set -e
+[ "$#" -lt 3 ] && echo "Missing args: $0 {SOURCE_PROJECT} {SRC_VERSION} {RELEASE_VERSION}" && exit;
 
-home_dir=/home/prometheus
-packages_dir=$home_dir/packages
-mkdir $home_dir
-mkdir $packages_dir
-mkdir $home_dir/prometheus
-mkdir $home_dir/alertmanager
-mkdir $home_dir/grafana
-mkdir $home_dir/node_exporter
-mkdir $home_dir/plum_exporter
+src_project=( $1 )
+src_version=( $2 )
+release_version=( $3 )
 
-scp root@192.168.1.157:/home/prometheus/packages/* $packages_dir
+project_src_url="git@github.com:seekplum/"${src_project}".git"
 
-tar zxvf $packages_dir/prometheus*.tar.gz --strip-components 1 -C $home_dir/prometheus
-tar zxvf $packages_dir/alertmanager*.tar.gz --strip-components 1 -C $home_dir/alertmanager
-tar zxvf $packages_dir/grafana*.tar.gz --strip-components 1 -C $home_dir/grafana
-tar zxvf $packages_dir/node_exporter*.tar.gz --strip-components 1 -C $home_dir/node_exporter
+[ $src_project = "plum_exporter" ] && bin_path="client_exporter/plum_exporter" && project="plum_exporter" && dockerimg="quay.io/prometheus/golang-builder"
+
+echo "source code url:"${project_src_url}
+
+root_path=`pwd`/.plum_build && mkdir -p ${root_path} && cd $root_path
+export GOPATH=${root_path}
+echo "export GOPATH:"${GOPATH}
+release_path=/tmp
+export_path=${release_path}/$bin_path
+
+mkdir -p ${GOPATH}/src/github.com/seekplum/
+mkdir -p ${export_path}
+
+
+cd ${GOPATH}/src/github.com/seekplum && git clone -b $src_version  $project_src_url && cd $project && git_message=`git log -n 1`
+
+docker run --rm -ti -v $(pwd):/app $dockerimg -i "github.com/seekplum/${project}" -p "linux/amd64"
+
+cp .build/linux-amd64/${src_project} ${export_path}
