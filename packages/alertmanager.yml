@@ -1,0 +1,28 @@
+global:
+
+ resolve_timeout: 5m
+
+ smtp_smarthost: smtp.163.com:25 # 发送邮箱服务器
+ smtp_from: xxx@163.com  # 发送邮箱地址
+ smtp_auth_username: xxx@163.com  # 邮箱用户名
+ smtp_auth_password: xxx  # 密码
+ smtp_require_tls: false
+
+route:
+ group_by: [alertname]
+ group_wait: 5s
+ repeat_interval: 1m
+ group_interval: 1m
+ receiver: plum-monitoring
+
+receivers:
+  - name: plum-monitoring
+    email_configs:
+    - send_resolved: true
+      to: xxxx@xxx.com  # 接收邮箱地址
+      headers:
+        Subject: '{{  template  "userdefine.subject" .}}'
+      html: '{{ template "email.html" . }}'
+
+templates:
+  - '*.tmpl'

@@ -1,0 +1,37 @@
+ALERT node_load5
+	IF node_load5>0
+	LABELS {
+			severity = "warn" ,
+	}
+	ANNOTATIONS {
+
+			alertname = "系统负载（5分钟）" ,
+
+			description = "监控主机在过去5分钟内的平均负载是否超出既定范围" ,
+
+			errorcode = "QD-S002" ,
+
+			message = "QD-S002：系统负载达到 <span>{{ $value }}</span>" ,
+
+			suggest = "可尝试检查应用状态是否正常，如活跃连接是否过多等" ,
+
+	}
+
+ALERT node_load5
+	IF node_load5>5
+	LABELS {
+			severity = "critical" ,
+	}
+	ANNOTATIONS {
+
+			alertname = "系统负载（5分钟）" ,
+
+			description = "监控主机在过去5分钟内的平均负载是否超出既定范围" ,
+
+			errorcode = "QD-S002" ,
+
+			message = "QD-S002：系统负载达到 <span>{{ $value }}</span>" ,
+
+			suggest = "可尝试检查应用状态是否正常，如活跃连接是否过多等" ,
+
+	}

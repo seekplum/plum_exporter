@@ -1,0 +1,32 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+    - targets:
+        - localhost:10011
+
+  - job_name: node_exporter
+    static_configs:
+      - targets:
+          - 127.0.0.01:10001
+        labels:
+          instance: 127.0.0.1
+          host: 127.0.0.1
+          ip: 127.0.0.1
+          job: node
+
+  - job_name: plum_exporter
+    static_configs:
+      - targets:
+          - 127.0.0.01:10002
+        labels:
+          instance: 127.0.0.1
+          host: 127.0.0.1
+          ip: 127.0.0.1
+          job: plum
+
+rule_files:
+  - rules/test.rules
