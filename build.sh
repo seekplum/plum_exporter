@@ -27,3 +27,6 @@ cd ${GOPATH}/src/github.com/seekplum && git clone -b $src_version  $project_src_
 docker run --rm -ti -v $(pwd):/app $dockerimg -i "github.com/seekplum/${project}" -p "linux/amd64"
 
 cp .build/linux-amd64/${src_project} ${export_path}
+
+unset GOPATH
+exit
